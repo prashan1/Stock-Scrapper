@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-9_56tku3hs*3_wb(&f98m+*=2l!fuuj1&#plyk-^o!a(ivm^#z
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['stock-sscrapper.herokuapp.com','127.0.0.1']
+ALLOWED_HOSTS = []
 
 
 # Application definition
