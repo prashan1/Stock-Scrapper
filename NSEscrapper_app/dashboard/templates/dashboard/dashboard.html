@@ -1,0 +1,345 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="shortcut icon" href="#">
+    <link rel="stylesheet" href="{% static 'dashboard/css/main.css' %}" />
+    <title>NSE</title>
+</head>
+<body>
+    <!-- Header file  -->
+        <header class="main-header">
+            <nav class="navigation">
+                <div class="nav1">
+                    <div class='logo'>
+                        <img src='{% static "dashboard/img/NSE_Logo.png" %}' alt="logo"  />
+                    </div>
+                    <div class='header-searchbar'>
+                        <input type="text" class="search-bar" style='outline:none'><button type='submit' class='button'>Submit</button>
+                    </div>
+                    <div class='logo flex' style='text-align:center;'>
+                        <img src='{% static "dashboard/img/NSE_Logo3.png" %}' alt="logo"  />
+                        <p style='text-align:center; margin-top:auto;margin-bottom: auto;font-weight: 700;'>Current Trading Date {{currentTime}}</p>
+                    </div>
+                </div>
+                <div class="nav2">
+                    <ul class='nav2-ul'>
+                        <li class='list-item'>HOME</li>
+                        <li class='list-item'>ABOUT</li>
+                        <li class='list-item' style='color:orange'>MARKET DATA</li>
+                        <li class='list-item'>INVEST</li>
+                        <li class='list-item'>LIST</li>
+                        <li class='list-item'>TRADE</li>
+                        <li class='list-item'>REGULATION</li>
+                        <li class='list-item'>LEARN</li>
+                        <li class='list-item'>RESOURCES </li>
+                    </ul>
+                </div>
+            </nav>
+            
+        </header>
+
+        <!-- Main section  -->
+        <main>
+            <div class="nav3">
+                <div style='background-color:rgb(58 45 125); ;color:white;'>Equity Stock</div>
+                <div style='margin-left:10px;'> Currency</div>
+                <div style='margin-left:10px;'>Interest Rates</div>
+                <div style='margin-left:10px;'>Commodities</div>
+            </div>
+                <hr>
+            <div class='.nav3 flex'>
+                <div> <h2 style='color: rgb(58 45 125);'>Option Chain (Equity Derivatives)</h2></div>
+                <div><h2 style='color: #d1445b;'> Futures contracts</h2></div>
+            </div>
+            <div class='change flex'>
+                <div>
+                    <h3>View Options Contracts for:</h3>
+                    <div class='change-inside'>Nifty  <i class="fa fa-angle-down" style="font-size:36px;float:right;margin-right:20px;"></i></div>
+                </div>
+                <div>
+                    <h3>Select Symbol</h3>
+                    <div class='change-inside'>Select <i class="fa fa-angle-down" style="font-size:36px;float:right;margin-right:20px;"></i></div>
+                </div>
+                <div>
+                    <h3>Expiry Date</h3>
+                    <div class='change-inside'> 17-Jun-21 <i class="fa fa-angle-down" style="font-size:36px;float:right;margin-right:20px;"></i></div>
+                </div>
+                <div>
+                    <h3>Strike Price</h3>
+                    <div class='change-inside'> Select<i class="fa fa-angle-down" style="font-size:36px;float:right;margin-right:20px;"></i> </div>
+                </div>
+
+            </div>
+            <div class="data-upper flex mg-top" >
+                <div>
+                    <p style='font:smaller'> Underlying Index: NIFTY <bold style='font-size:20px;'>15,767.55 </bold>
+                        As on {{currentTime}} IST <i class="fa fa-refresh fa-spin" style="margin-left:5px;cursor:pointer;font-size:24px;color:rgb(223, 99, 11)"></i></p>
+                </div>
+                <div class='flex'>
+                    <h3> <span>Terms of Use</span></h3>
+                    <h3> <span> <i class="fa fa-arrows-alt" style="font-size:24px ;color:chocolate;margin:5px;"></i> View</span></h3>
+                    <h3><span><i class="fa fa-file-code-o" style="font-size:26px;color:chocolate;margin:5px;"></i>csvDownload (.csv)</span></h3>
+
+                </div>
+            </div>
+             <!-- Data table -->
+            <section class='main-section'>
+                <table>
+                    <thead id='content-head'>
+                        <tr>
+                            <th colspan='11'>CALLS</th>
+                            <th colspan='12'>PUTS</th>
+                        </tr>
+                        <tr>
+                            <th>H</th>
+                            <th>OI</th>
+                            <th> CHNG IN OI</th>
+                            <th>VOLUME</th>
+                            <th> IV</th>
+                            <th> LTP</th>
+                            <th>CHNG</th>
+                            <th>BID QTY</th>
+                            <th>BID PRICE</th>
+                            <th>ASK PRICE</th>
+                            <th> ASK QTY</th>
+                            <th>STRIKE PRICE</th>
+                            <th>BID QTY</th>
+                            <th>BID PRICE</th>
+                            <th>ASK PRICE</th>
+                            <th>ASK QTY</th>
+                            <th> CHNG</th>
+                            <th>LTP</th>
+                            <th>IV</th>
+                            <th>VOLUME</th>
+                            <th>CHNG IN OI</th>
+                            <th>OI</th>
+                            <th>H</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for input in market %}
+                        <tr>
+                            <td style='padding:0px;'><img src='{% static "dashboard/img/side.png" %}' alt="logo"  /></td>
+                            {% if input.ceopenInterest == 0.00 %}
+                                <td>--</td>
+                            {% else %}
+                                <td>{{input.ceopenInterest}}</td>
+                            {% endif %}
+                            {% if input.cechangeinOpenInterest == 0.00 %}
+                                <td>--</td>
+                            {% else %}
+                                <td>{{input.cechangeinOpenInterest}}</td>
+                            {% endif %}
+                            {% if input.cetotalTradedVolume == 0.00 %}
+                                <td>--</td>
+                            {% else %}
+                                <td>{{input.cetotalTradedVolume}}</td>
+                            {% endif %}
+                            {% if input.ceimpliedVolatility == 0.00 %}
+                                <td>--</td>
+                            {% else %}
+                                <td>{{input.ceimpliedVolatility}}</td>
+                            {% endif %}
+                            {% if input.celastPrice == 0.00 %}
+                                <td>--</td>
+                            {% else %}
+                                <td>{{input.celastPrice}}</td>
+                            {% endif %}
+                            {% if input.cechange == 0.00 %}
+                                <td>--</td>
+                            {% else %}
+                                <td>{{input.cechange}}</td>
+                            {% endif %}
+                            {% if input.cebidQty == 0.00 %}
+                                <td>--</td>
+                            {% else %}
+                                <td>{{input.cebidQty}}</td>
+                            {% endif %}
+                            {% if input.cebidprice == 0.00 %}
+                                <td>--</td>
+                            {% else %}
+                                <td>{{input.cebidprice}}</td>
+                            {% endif %}
+                            {% if input.ceaskPrice == 0.00 %}
+                                <td>--</td>
+                            {% else %}
+                                <td>{{input.ceaskPrice}}</td>
+                            {% endif %}
+                            {% if input.ceaskQty == 0.00 %}
+                                <td>--</td>
+                            {% else %}
+                                <td>{{input.ceaskQty}}</td>
+                            {% endif %}
+                            {% if input.strikePrice == 0.00 %}
+                                <td>--</td>
+                            {% else %}
+                                <td>{{input.strikePrice}}</td>
+                            {% endif %}
+                            {% if input.pebidQty == 0.00 %}
+                                <td>--</td>
+                            {% else %}
+                                <td>{{input.pebidQty}}</td>
+                            {% endif %}
+                            {% if input.pebidprice == 0.00 %}
+                                <td>--</td>
+                            {% else %}
+                                <td>{{input.pebidprice}}</td>
+                            {% endif %}
+                            {% if input.peaskPrice == 0.00 %}
+                                <td>--</td>
+                            {% else %}
+                                <td>{{input.peaskPrice}}</td>
+                            {% endif %}
+                            {% if input.peaskQty == 0.00 %}
+                                <td>--</td>
+                            {% else %}
+                                <td>{{input.peaskQty}}</td>
+                            {% endif %}
+                            {% if input.pechange == 0.00 %}
+                                <td>--</td>
+                            {% else %}
+                                <td>{{input.pechange}}</td>
+                            {% endif %}
+                            {% if input.pelastPrice == 0.00 %}
+                                <td>--</td>
+                            {% else %}
+                                <td>{{input.pelastPrice}}</td>
+                            {% endif %}
+                            {% if input.peimpliedVolatility == 0.00 %}
+                                <td>--</td>
+                            {% else %}
+                                <td>{{input.peimpliedVolatility}}</td>
+                            {% endif %}
+                            {% if input.petotalTradedVolume == 0.00 %}
+                                <td>--</td>
+                            {% else %}
+                                <td>{{input.petotalTradedVolume}}</td>
+                            {% endif %}
+                            {% if input.pechangeinOpenInterest == 0.00 %}
+                                <td>--</td>
+                            {% else %}
+                                <td>{{input.pechangeinOpenInterest}}</td>
+                            {% endif %}
+                            {% if input.peopenInterest == 0.00 %}
+                                <td>--</td>
+                            {% else %}
+                                <td>{{input.peopenInterest}}</td>
+                            {% endif %}
+                            <td style='padding:0px;'>  <img src='{% static "dashboard/img/side.png" %}' alt="logo"  /></td>
+                            </tr>
+                        {% endfor %}
+                        <tr >
+                            <td>Tot</td>
+                            <td>{{ CEtotOI }}</td>
+                            <td>{{ CEtotVoi }}</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>{{ PEtotOI }}</td>
+                            <td>{{ PEtotVoi }}</td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- Note section      -->
+            <div class="Note">
+                <h1 style='color:rgb(58 45 125);'>Note</h1>
+                <div class='underline'></div>
+                <hr>
+                <ul >
+                    <li>10% interest rate is applied while computing implied volatility. </li>
+                    <li>Highlighted options are in-the-money.</li>
+                    <li> Volume and Open Interest, displayed in Contracts.</li>
+                    <li> Use of the NSE website is governed by the Terms of Use (22f and 23).</li>
+                    <li>NSE specifically prohibits usage of the Site for non-commercial purposes, and all Users agree not to Aggregate, copy or duplicate in any manner any of the content or information available from the Site. NSE may investigate and take legal action against violations of these Terms of Use.</li>
+                </ul>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer style='background-color:#e7e7f7;'>
+            <div class="footer-element flex">
+                <div>
+                    <h2>About NSE</h2>
+                    <ul>
+                        <li> About Us</li>
+                        <li> Structure & Key Personnel</li>
+                        <li>Investor Relations</li>
+                        <li> Awards and Recognitions</li>
+                        <li> Regulations</li>
+                        <li> Event Gallery</li>
+                        <li> Media</li>
+                        <li> Holidays</li>
+                        <li> Careers</li>
+                        <li> Contact Us</li>
+                    </ul>
+                </div>
+                <div>
+                    <h2>NSE Group Companies</h2>
+                    <ul>
+                        <li>NSE Academy</li>
+                        <li>NSE Clearing</li>
+                        <li>NSE Data & Analytics</li>
+                        <li>NSE Foundation</li>
+                        <li>NSE Indices</li>
+                        <li>NSE International Exchange</li>
+                        <li>NSE International Clearing</li>
+                        <li>NSE Investments</li>
+                        <li>NSEIT</li>
+                        <li>NSE Infotech</li>
+                    </ul>
+                </div>
+                <div>
+                    <h2>Products & Services</h2>
+                    <ul>
+                        <li>Equity Market</li>
+                        <li>Indices</li>
+                        <li>Emerge Platform</li>
+                        <li>Mutual Funds</li>
+                        <li>Equity Derivatives</li>
+                        <li>Currency Derivatives</li>
+                        <li>Commodity Derivatives</li>
+                        <li>Interest Rate Derivatives</li>
+                        <li>Fixed Income and Debt</li>
+                        <li>Public Issues</li>
+                    </ul>
+                </div>
+                <div>
+                    <ul>
+                        <li>.</li>
+                        <li>.</li>
+                        <li> Terms of Use</li>
+                        <li> Copyright</li>
+                        <li> Site Map</li>
+                        <li> Website Policies</li>
+                    </ul>
+                </div>
+            </div>
+           <h5 > <span style='background-color:#e7e7f7;'>.  Copyright © 2021</span> National Stock Exchange of India Ltd. All rights reserved. Best viewed in Chrome and 1366 X 768 resolution.
+                 </h5>
+        </footer>
+
+
+</body>
+</html>
