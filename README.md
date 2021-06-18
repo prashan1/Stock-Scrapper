@@ -3,13 +3,14 @@ Scrapping NSE website data and storing data into our database and serving in our
 
 ## Prerequisites
 Python3, virtualenv en pip installed on your system. 
+![NSE - Google Chrome 18-06-2021 12_50_04](https://user-images.githubusercontent.com/57286404/122522703-dfb4a700-d033-11eb-8a1a-adfd875d9086.png)
 
-![NSE - Google Chrome 18-06-2021 01_01_22](https://user-images.githubusercontent.com/57286404/122512217-2a2f2700-d026-11eb-8230-79a3c0bc4eaa.png)
-![NSE - Google Chrome 18-06-2021 01_01_30](https://user-images.githubusercontent.com/57286404/122512215-28fdfa00-d026-11eb-956d-8fa0aa9ab007.png)
+![NSE - Google Chrome 18-06-2021 12_50_13](https://user-images.githubusercontent.com/57286404/122522725-e511f180-d033-11eb-969b-3dc3af06e1df.png)
 ```Architecture```
 ![0_26rEcLHEhdXBwZE2](https://user-images.githubusercontent.com/57286404/122520948-e0e4d480-d031-11eb-9cdc-c2b5ab873992.png)
-![NSE - Google Chrome 18-06-2021 01_01_38](https://user-images.githubusercontent.com/57286404/122512212-28656380-d026-11eb-9c98-ca3ebec2c77b.png)
-![NSE - Google Chrome 18-06-2021 01_01_43](https://user-images.githubusercontent.com/57286404/122512206-26030980-d026-11eb-905a-8d87251e0f7a.png)
+![NSE - Google Chrome 18-06-2021 12_50_26](https://user-images.githubusercontent.com/57286404/122522720-e3482e00-d033-11eb-8e1e-cc66be7ffe20.png)
+
+![NSE - Google Chrome 18-06-2021 12_50_32](https://user-images.githubusercontent.com/57286404/122522718-e2af9780-d033-11eb-8c66-8f93bf2820de.png)
 ```Scrapper```
 ![crawller py - internship - Visual Studio Code 18-06-2021 12_34_54](https://user-images.githubusercontent.com/57286404/122520900-d32f4f00-d031-11eb-8e8d-e99dd8d9122e.png)
 
